@@ -1,18 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>Testing graphql server locally</h1>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        ID: {{ todo.id }} - Name: {{ todo.name }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import gql from "graphql-tag";
 
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  apollo: {
+    todos: gql`
+      {
+        todos {
+          id
+          name
+        }
+      }
+    `
   }
 };
 </script>
